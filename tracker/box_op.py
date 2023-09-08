@@ -1,5 +1,7 @@
 import numpy as np
 
+resolutionX=1920
+resolutionY=1080
 
 def convert_bbs_type(boxes, input_box_type):
     boxes = np.array(boxes)
@@ -80,10 +82,10 @@ def corners3d_to_img_boxes(P2, corners3d):
     img_boxes = np.concatenate((x1.reshape(-1, 1), y1.reshape(-1, 1), x2.reshape(-1, 1), y2.reshape(-1, 1)), axis=1)
     boxes_corner = np.concatenate((x.reshape(-1, 8, 1), y.reshape(-1, 8, 1)), axis=2)
 
-    img_boxes[:, 0] = np.clip(img_boxes[:, 0], 0, 1242 - 1)
-    img_boxes[:, 1] = np.clip(img_boxes[:, 1], 0, 375 - 1)
-    img_boxes[:, 2] = np.clip(img_boxes[:, 2], 0, 1242 - 1)
-    img_boxes[:, 3] = np.clip(img_boxes[:, 3], 0, 375 - 1)
+    img_boxes[:, 0] = np.clip(img_boxes[:, 0], 0, resolutionX - 1)
+    img_boxes[:, 1] = np.clip(img_boxes[:, 1], 0, resolutionY - 1)
+    img_boxes[:, 2] = np.clip(img_boxes[:, 2], 0, resolutionX - 1)
+    img_boxes[:, 3] = np.clip(img_boxes[:, 3], 0, resolutionY - 1)
 
     return img_boxes, boxes_corner
 

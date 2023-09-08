@@ -94,7 +94,7 @@ class trackingEvaluation(object):
         # get number of sequences and
         # get number of frames per sequence from test mapping
         # (created while extracting the benchmark)
-        filename_test_mapping = "./data/tracking/evaluate_tracking.seqmap.val"
+        filename_test_mapping = "./data/tracking/evaluate_tracking.seqmap.presil_training"
         self.n_frames         = []
         self.sequence_name    = []
         with open(filename_test_mapping, "r") as fh:

@@ -12,5 +12,5 @@ def count(name):
     print(sum)
 
 if __name__ == '__main__':
-    name="evaluate_tracking.seqmap.test"
+    name="evaluate_tracking.seqmap.presil_training"
     count(name)
