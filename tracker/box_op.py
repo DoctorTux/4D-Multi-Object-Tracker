@@ -54,7 +54,7 @@ def register_bbs(boxes, pose):
 
     ones = np.ones(shape=(boxes.shape[0], 1))
     for i in range(t_id):
-        b_id = i * 7
+        b_id = i * 8
         box_xyz = boxes[:, b_id:b_id + 3]
         box_xyz1 = np.concatenate([box_xyz, ones], -1)
 

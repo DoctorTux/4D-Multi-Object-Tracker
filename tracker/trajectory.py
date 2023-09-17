@@ -118,10 +118,10 @@ class Trajectory:
         """
         self.A = np.mat(np.eye(self.track_dim))
         self.Q = np.mat(np.eye(self.track_dim))*self.config.state_func_covariance
-        self.P = np.mat(np.eye(self.track_dim-6))*self.config.measure_func_covariance
-        self.B = np.mat(np.zeros(shape=(self.track_dim-6,self.track_dim)))
-        self.B[0:3,:] = self.A[0:3,:]
-        self.B[3:,:] = self.A[9:,:]
+        self.P = np.mat(np.eye(self.track_dim-3))*self.config.measure_func_covariance
+        self.B = np.mat(np.zeros(shape=(self.track_dim-3,self.track_dim)))
+        self.B[0:6,:] = self.A[0:6,:]
+        self.B[6:,:] = self.A[9:,:]
 
         self.velo = np.mat(np.eye(3))*self.scanning_interval
         self.acce = np.mat(np.eye(3))*0.5*self.scanning_interval**2
@@ -203,17 +203,20 @@ class Trajectory:
             else:
                 features = np.concatenate([bb,features],0)
 
-        detected_state_template = np.zeros(shape=(self.track_dim-6))
+        detected_state_template = np.zeros(shape=(self.track_dim-3))
 
         detected_state_template[:3] = bb[:3] #init x,y,z
 
         if self.tracking_bb_size:
-            detected_state_template[3: 7] = bb[3:7]
+            detected_state_template[6: 10] = bb[3:7]
             if self.tracking_features:
                 detected_state_template[7: ] = features[:]
         else:
             if self.tracking_features:
                 detected_state_template[3: ] = features[:]
+        
+        ### add velocity
+        detected_state_template[4:6]=np.array([bb[-1]*np.sin(bb[-3]),0,bb[-1]*np.cos(bb[-3])])
 
         detected_state_template = np.mat(detected_state_template).T
 

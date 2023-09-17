@@ -57,10 +57,10 @@ class Tracker3D:
         self.trajectores_prediction()
 
         if self.current_bbs is None:
-            return np.zeros(shape=(0,7)),np.zeros(shape=(0))
+            return np.zeros(shape=(0,8)),np.zeros(shape=(0))
         else:
             if len(self.current_bbs) == 0:
-                return np.zeros(shape=(0,7)),np.zeros(shape=(0))
+                return np.zeros(shape=(0,8)),np.zeros(shape=(0))
 
             else:
                 self.current_bbs = convert_bbs_type(self.current_bbs,self.box_type)
@@ -124,6 +124,7 @@ class Tracker3D:
             features = None
             if self.current_features is not None:
                 features = self.current_features[i]
+                print(features)
             score = self.current_scores[i]
             label=1
             new_tra = Trajectory(init_bb=box,
@@ -229,7 +230,7 @@ class Tracker3D:
             else:
                 continue
         if len(valid_bbs)==0:
-            return np.zeros(shape=(0,7)),np.zeros(shape=(0))
+            return np.zeros(shape=(0,8)),np.zeros(shape=(0))
         else:
             return np.array(valid_bbs),np.array(valid_ids)
 

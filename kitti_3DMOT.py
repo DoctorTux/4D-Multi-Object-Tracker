@@ -43,7 +43,7 @@ def track_one_seq(seq_id,config):
 
         start = time.time()
 
-        tracker.tracking(objects[:,:7],
+        tracker.tracking(objects[:,:8],
                              features=None,
                              scores=det_scores,
                              pose=pose,
