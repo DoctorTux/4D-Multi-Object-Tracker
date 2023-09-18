@@ -78,20 +78,23 @@ class Trajectory:
         :return:
         """
 
-        detected_state_template = np.zeros(shape=(self.track_dim-6))
+        detected_state_template = np.zeros(shape=(self.track_dim-3))
 
         update_covariance_template = np.eye(self.track_dim)*0.01
 
         detected_state_template[:3] = self.init_bb[:3] #init x,y,z
 
         if self.tracking_bb_size:
-            detected_state_template[3: 7] = self.init_bb[3:7]
+            detected_state_template[6: 10] = self.init_bb[3:7]
             if self.tracking_features:
                 detected_state_template[7: ] = self.init_features[:]
         else:
             if self.tracking_features:
 
                 detected_state_template[3: ] = self.init_features[:]
+        
+        ### add velocity
+        detected_state_template[3:6]=np.array([self.init_bb[-1]*np.sin(self.init_bb[-3]),0,self.init_bb[-1]*np.cos(self.init_bb[-3])])
 
         detected_state_template = np.mat(detected_state_template).T
         update_covariance_template = np.mat(update_covariance_template).T
@@ -216,7 +219,7 @@ class Trajectory:
                 detected_state_template[3: ] = features[:]
         
         ### add velocity
-        detected_state_template[4:6]=np.array([bb[-1]*np.sin(bb[-3]),0,bb[-1]*np.cos(bb[-3])])
+        detected_state_template[3:6]=np.array([bb[-1]*np.sin(bb[-3]),0,bb[-1]*np.cos(bb[-3])])
 
         detected_state_template = np.mat(detected_state_template).T
 

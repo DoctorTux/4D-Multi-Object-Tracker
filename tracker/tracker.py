@@ -124,7 +124,6 @@ class Tracker3D:
             features = None
             if self.current_features is not None:
                 features = self.current_features[i]
-                print(features)
             score = self.current_scores[i]
             label=1
             new_tra = Trajectory(init_bb=box,
@@ -152,7 +151,7 @@ class Tracker3D:
         all_detections = np.tile(all_detections,(1,pred_len,1))
         all_predictions = np.tile(all_predictions,(det_len,1,1))
 
-        dis = (all_detections[...,0:3]-all_predictions[...,0:3])**2
+        dis = (all_detections[...,0:6]-all_predictions[...,0:6])**2
         dis = np.sqrt(dis.sum(-1))
 
         cost = dis*all_predictions[...,-1]

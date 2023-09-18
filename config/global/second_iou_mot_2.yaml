@@ -1,7 +1,7 @@
 # dataset info
-dataset_path: "F:\\Datasets\\PreSIL_Dataset\\training"
-detections_path: "F:\\Datasets\\PreSIL_Dataset\\training\\predictions_og"
-save_path: 'evaluation\\results\sha_key\data'
+dataset_path: "/home/guest/Documents/Dataset_Diogo/training"
+detections_path: "/home/guest/Documents/Dataset_Diogo/detections/detection_vel/training"
+save_path: 'evaluation/results/sha_key/data'
 
 # val [1,6,8,10,12,13,14,15,16,18,19]
 # trainval [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]

@@ -1,6 +1,6 @@
 # dataset info
 dataset_path: "/home/guest/Documents/Dataset_Diogo/training"
-detections_path: "/home/guest/Documents/Dataset_Diogo/detections/baseline/training"
+detections_path: "/home/guest/Documents/Dataset_Diogo/detections/detection_vel/training"
 save_path: 'evaluation/results/sha_key/data'
 
 # val [1,6,8,10,12,13,14,15,16,18,19]
