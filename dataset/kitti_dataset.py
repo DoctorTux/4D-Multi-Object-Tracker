@@ -78,7 +78,7 @@ class KittiTrackingDataset:
         if self.ob_path is not None:
             ob_path = os.path.join(self.ob_path, name + '.txt')
             if not os.path.exists(ob_path):
-                objects = np.zeros(shape=(0, 8))
+                objects = np.zeros(shape=(0, 10))
                 det_scores = np.zeros(shape=(0,))
             else:
                 objects_list = []
@@ -87,17 +87,17 @@ class KittiTrackingDataset:
                     for each_ob in f.readlines():
                         infos = re.split(' ', each_ob)
                         if infos[0] in self.type:
-                            objects_list.append(infos[8:16])
+                            objects_list.append(infos[8:18])
                             det_scores.append(infos[15])
                 if len(objects_list)!=0:
                     objects = np.array(objects_list,np.float32)
                     objects[:, 3:6] = cam_to_velo(objects[:, 3:6], self.V2C)[:, :3]
                     det_scores = np.array(det_scores,np.float32)
                 else:
-                    objects = np.zeros(shape=(0, 8))
+                    objects = np.zeros(shape=(0, 10))
                     det_scores = np.zeros(shape=(0,))
         else:
-            objects = np.zeros(shape=(0,8))
+            objects = np.zeros(shape=(0,10))
             det_scores = np.zeros(shape=(0,))
 
         return self.P2,self.V2C,points,image,objects,det_scores,pose

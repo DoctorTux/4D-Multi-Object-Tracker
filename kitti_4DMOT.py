@@ -43,7 +43,7 @@ def track_one_seq(seq_id,config):
 
         start = time.time()
 
-        tracker.tracking(objects[:,:8],
+        tracker.tracking(objects[:,:10],
                              features=None,
                              scores=det_scores,
                              pose=pose,
@@ -161,7 +161,7 @@ def tracking_val_seq(arg):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='arg parser')
-    parser.add_argument('--cfg_file', type=str, default="config/online/second_iou_mot_2.yaml",
+    parser.add_argument('--cfg_file', type=str, default="config/global/second_iou_mot_2_vec.yaml",
                         help='specify the config for tracking')
     args = parser.parse_args()
     tracking_val_seq(args)

@@ -94,7 +94,7 @@ class Trajectory:
                 detected_state_template[3: ] = self.init_features[:]
         
         ### add velocity
-        detected_state_template[3:6]=np.array([self.init_bb[-1]*np.sin(self.init_bb[-3]),0,self.init_bb[-1]*np.cos(self.init_bb[-3])])
+        detected_state_template[3:6]=np.array([self.init_bb[-3],self.init_bb[-2],self.init_bb[-1]])
 
         detected_state_template = np.mat(detected_state_template).T
         update_covariance_template = np.mat(update_covariance_template).T
@@ -219,7 +219,7 @@ class Trajectory:
                 detected_state_template[3: ] = features[:]
         
         ### add velocity
-        detected_state_template[3:6]=np.array([bb[-1]*np.sin(bb[-3]),0,bb[-1]*np.cos(bb[-3])])
+        detected_state_template[3:6]=np.array([bb[-3],bb[-2],bb[-1]])
 
         detected_state_template = np.mat(detected_state_template).T
 
